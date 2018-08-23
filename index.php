@@ -1,21 +1,21 @@
-<?php
+<?php 
 
 require_once("vendor/autoload.php");
 
-$app = new \Slim\Slim();
+use \Slim\Slim;
+
+use \Hcode\Page;
+
+$app = new Slim();
 
 $app->config("debug", TRUE);
 
-$app->get("/", function() {
+	$app->get("/", function() {
 
-	$sql = new Hcode\DB\Sql();
+		$page = new Page();
 
-	$response = $sql->select("select * from tb_products");
+		$page->setTpl("index");
 
-	echo '<pre>';
-	print_r($response);
-	
-});
+	});
 
 $app->run();
-
